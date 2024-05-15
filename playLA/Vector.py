@@ -1,6 +1,7 @@
 """
 创造一个向量类，向量其实就是一组有序的数字，python中用数组表示一组有序的数字
 """
+import math
 
 
 # 定义一个向量类,传入一个list
@@ -8,7 +9,16 @@ class Vector:
     def __init__(self, lst):
         self._values = list(lst)  # 将引用者传进来的lst进行复制，使其不可更改
 
-    # 定义一个类方法，使用户可以创造一个n维的零向量
+    # 求向量的模的方法
+    def norm(self):
+        return math.sqrt(sum(e ** 2 for e in self))  # 将向量的所有元素平方后相加，和开根号
+
+    # 求向量的单位向量
+    def normalize(self):
+        return 1 / self.norm() * Vector(self._values)
+
+        # 定义一个类方法，使用户可以创造一个n维的零向量
+
     @classmethod
     def zero(cls, dim):
         return cls([0] * dim)
