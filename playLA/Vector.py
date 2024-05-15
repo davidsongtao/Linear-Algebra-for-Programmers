@@ -2,7 +2,7 @@
 创造一个向量类，向量其实就是一组有序的数字，python中用数组表示一组有序的数字
 """
 import math
-
+from playLA._global import EPSILON
 
 # 定义一个向量类,传入一个list
 class Vector:
@@ -15,6 +15,8 @@ class Vector:
 
     # 返回向量的单位向量
     def normalize(self):
+        if self.norm() <= EPSILON:    # 浮点数和0比较，不能直接使用==，要定义一个精度
+            raise ZeroDivisionError("Normalization cannot be zero")
         return Vector(self._values) / self.norm()
 
     # 返回一个N维的零向量
@@ -39,7 +41,7 @@ class Vector:
 
     # 返回向量的数量除法
     def __truediv__(self, k):  # 向量运算使用浮点数，所以覆盖truediv，python3中区分了整数和浮点数的除法
-        return Vector([a / k for a in self])
+        return Vector([1 / k * a for a in self])
 
     # 向量的右乘
     def __rmul__(self, k):
