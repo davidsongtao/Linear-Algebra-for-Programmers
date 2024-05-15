@@ -38,8 +38,8 @@ class Vector:
         return Vector([a * k for a in self])
 
     # 返回向量的数量除法
-    def __truediv__(self, k):
-        return Vector([a/k for a in self])
+    def __truediv__(self, k):  # 向量运算使用浮点数，所以覆盖truediv，python3中区分了整数和浮点数的除法
+        return Vector([a / k for a in self])
 
     # 向量的右乘
     def __rmul__(self, k):
