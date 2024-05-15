@@ -8,6 +8,11 @@ class Vector:
     def __init__(self, lst):
         self._values = list(lst)  # 将引用者传进来的lst进行复制，使其不可更改
 
+    # 定义一个类方法，使用户可以创造一个n维的零向量
+    @classmethod
+    def zero(cls, dim):
+        return cls([0] * dim)
+
     # 向量的加法
     def __add__(self, other):
         # 判断两个向量的维度是否相等
