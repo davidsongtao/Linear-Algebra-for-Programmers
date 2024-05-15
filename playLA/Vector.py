@@ -9,16 +9,15 @@ class Vector:
     def __init__(self, lst):
         self._values = list(lst)  # 将引用者传进来的lst进行复制，使其不可更改
 
-    # 求向量的模的方法
+    # 返回向量的模
     def norm(self):
         return math.sqrt(sum(e ** 2 for e in self))  # 将向量的所有元素平方后相加，和开根号
 
-    # 求向量的单位向量
+    # 返回向量的单位向量
     def normalize(self):
         return 1 / self.norm() * Vector(self._values)
 
-        # 定义一个类方法，使用户可以创造一个n维的零向量
-
+    # 返回一个N维的零向量
     @classmethod
     def zero(cls, dim):
         return cls([0] * dim)
@@ -38,15 +37,15 @@ class Vector:
     def __mul__(self, k):
         return Vector([a * k for a in self])
 
-    # 向量的右乘运算
+    # 向量的右乘
     def __rmul__(self, k):
         return Vector([k * a for a in self])
 
-    # 向量取正的结果
+    # 返回向量取正的结果
     def __pos__(self):
         return 1 * self
 
-    # 向量取负的结果
+    # 返回向量取负的结果
     def __neg__(self):
         return -1 * self
 
