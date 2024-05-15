@@ -15,7 +15,7 @@ class Vector:
 
     # 返回向量的单位向量
     def normalize(self):
-        return 1 / self.norm() * Vector(self._values)
+        return Vector(self._values) / self.norm()
 
     # 返回一个N维的零向量
     @classmethod
@@ -33,9 +33,13 @@ class Vector:
         assert len(self) == len(other), "Error in Subtracting. Length must be same."
         return Vector([a - b for a, b in zip(self, other)])
 
-    # 向量的数量乘法
+    # 返回向量的数量乘法
     def __mul__(self, k):
         return Vector([a * k for a in self])
+
+    # 返回向量的数量除法
+    def __truediv__(self, k):
+        return Vector([a/k for a in self])
 
     # 向量的右乘
     def __rmul__(self, k):
