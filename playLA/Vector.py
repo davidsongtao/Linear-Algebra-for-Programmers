@@ -15,7 +15,7 @@ class Vector:
 
     # 返回向量的单位向量
     def normalize(self):
-        if self.norm() <= EPSILON:    # 浮点数和0比较，不能直接使用==，要定义一个精度
+        if self.norm() < EPSILON:    # 浮点数和0比较，不能直接使用==，要定义一个精度
             raise ZeroDivisionError("Normalization cannot be zero")
         return Vector(self._values) / self.norm()
 
