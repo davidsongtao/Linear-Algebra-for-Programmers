@@ -1,5 +1,5 @@
-import numpy
 import numpy as np
+from playLA._global import EPSILON
 
 if __name__ == '__main__':
     """
@@ -38,3 +38,19 @@ if __name__ == '__main__':
     print(f"{vc}向量乘以{vc2}的结果是：{vc * vc2}")  # 逐个元素的乘法， 而不是sum(),这种乘法没有数学意义
     print(f"{vc}向量点乘{vc2}的结果是：{vc.dot(vc2)}")  # 向量的点乘在NP中的使用方式
     print(f"{vc}向量求模的结果是：{np.linalg.norm(vc)}")  # 向量求模的结果，Numpy中一个linalg的子模块中，有一个norm函数用来计算向量的模
+    # 向量的归一化,返回
+    print(f"{vc}向量的单位向量是：{vc / np.linalg.norm(vc)}")
+    print(f"{vc}向量的单位向量的模是：{np.linalg.norm(vc / np.linalg.norm(vc))}")  # 单位向量的模一定为1
+
+
+    # 上面的情况中，如果单位向量为0，需要自己处理
+
+    def getnorm(vector):
+        if np.linalg.norm(vector) < EPSILON:
+            raise RuntimeWarning("错误！向量的模是0！请检查代码逻辑。")
+        return vector / np.linalg.norm(vc)
+
+
+    zero_vc = np.zeros(3)
+    # np.linalg.norm(zero_vc / np.linalg.norm(zero_vc))  # 报错，归一化处理的时候，注意模不能为0
+    print(f"{vc}向量的单位向量是：{getnorm(vc)}")
