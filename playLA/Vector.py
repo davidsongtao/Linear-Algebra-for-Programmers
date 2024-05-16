@@ -53,7 +53,7 @@ class Vector:
             "Error in Dotting. Length must be same."
         return sum(a * b for a, b in zip(self, another))
 
-    # TODO 返回一个向量在另一个向量上的投影点的坐标
+    # 返回一个向量在另一个向量上的投影点的坐标
 
     # 1. 计算投影点的距离：d = U向量点乘V向量除U向量的模
     # 2. 计算投影点的方向：u = U向量的单位向量
