@@ -99,4 +99,11 @@ class Metrix:
     def __truediv__(self, k):
         return (1 / k) * self
 
-    # TODO 矩阵和向量的乘法操作
+    # DONE 矩阵和向量的乘法操作
+    # 矩阵中的每一个行向量与向量点乘，结果组成一个新矩阵
+    def metrix_mul(self, another):
+        assert self.row_num() == another.__len__(), \
+            "Error in multiplication. Metrix Row Number Must be Same as Vector Length."
+        return Metrix([
+            self.row_vector(i) * another[i] for i in range(self.row_num())
+        ])
