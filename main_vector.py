@@ -6,7 +6,7 @@ if __name__ == "__main__":
 
     vec2 = Vector([1, 2])
     result = vec + vec2
-    print(result)
+    print(vec2[0])
 
     result2 = 3 * vec2
     print(result2)
