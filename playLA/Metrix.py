@@ -7,6 +7,13 @@ class Metrix:
     def __init__(self, lst2d):
         self._values = [row[:] for row in lst2d]  # 将引用者传进来的lst2d每行进行复制，使其不可更改
 
+    # 返回一个R行C列的零矩阵
+    @classmethod
+    def zero(cls, r, c):
+        return cls([
+            [0] * c for _ in range(r)
+        ])
+
     def __repr__(self):
         return f"Metrix({self._values})"
 
@@ -43,3 +50,55 @@ class Metrix:
     # 获取矩阵中某一列的列向量是谁
     def col_vector(self, index):
         return Vector(row[index] for row in self._values)
+
+    def __iter__(self):
+        return iter(self._values).__iter__()
+
+    """
+    矩阵的基本运算
+        1. 矩阵加法/减法
+        2. 矩阵数量乘法
+    """
+
+    # TODO 矩阵加法
+    def __add__(self, another):
+        # 返回两个矩阵的加法结果
+        assert self.shape() == another.shape(), \
+            "Error in adding. Shape of matrix must be same"
+        return Metrix([
+            [a + b for a, b in zip(self.row_vector(i),
+                                   another.row_vector(i))] for i in range(self.row_num())
+        ])
+
+    # TODO 矩阵减法
+    def __sub__(self, another):
+        assert self.shape() == another.shape(), \
+            "Error in subtraction. Shape of matrix must be same"
+        return Metrix([
+            [a - b for a, b in zip(self.row_vector(i),
+                                   another.row_vector(i))] for i in range(self.row_num())
+        ])
+
+    # TODO 矩阵的数量乘法
+    def __mul__(self, k):
+        return Metrix([
+            [a * k for a in self.row_vector(i)] for i in range(self.row_num())
+        ])
+
+    # TODO 矩阵的右乘的结果
+    def __rmul__(self, k):
+        return self * k
+
+    # TODO 矩阵取正的结果
+    def __pos__(self):
+        return 1 * self
+
+    # TODO 矩阵取负的结果
+    def __neg__(self):
+        return -1 * self
+
+    # TODO 矩阵的数量除法
+    def __truediv__(self, k):
+        return (1 / k) * self
+
+    # TODO 矩阵和向量的乘法操作
