@@ -22,5 +22,4 @@ if __name__ == '__main__':
     print(f"{metrix}矩阵乘以3的结果是：{metrix * 3}")
     print(f"3乘以{metrix}矩阵的结果是：{3 * metrix}")
     print(f"{metrix}矩阵除以3的结果是：{metrix / 2}")
-    print(f"{metrix}矩阵乘以{metrix2}矩阵的结果是：{metrix.dot(metrix2)}")
     print(f"创建一个有两行三列的零矩阵：{Metrix.zero(2,3)}")
