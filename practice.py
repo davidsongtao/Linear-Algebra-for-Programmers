@@ -9,8 +9,7 @@ from playLA.Metrix import Metrix
 from playLA.Vector import Vector
 
 
-# DONE 实现不同的变换矩阵，从而实现不同的图形变换方法
-
+# DONE 将图形按照传入的参数进行放大或缩小，参数小于1时缩小，参数大于1时放大
 def zoom(points, zoom_x, zoom_y):
     """
     本方法实现了将图形按照参数放大或缩小
@@ -33,6 +32,32 @@ def zoom(points, zoom_x, zoom_y):
     y = [p2.col_vector(i)[1] -
          (points[0][1] * zoom_y - points[0][1]) for i in range(p2.col_num())]
     # 将更新后的坐标重新组织并返回
+    return [list(pair) for pair in zip(x, y)]
+
+
+# DONE 将图形按照传入的参数沿X轴翻转
+def flip_x(points):
+    p = Metrix(points)
+    T = Metrix([
+        [1, 0],
+        [0, -1]
+    ])
+    P = T.dot(p.T())
+    x = [P.col_vector(i)[0] for i in range(P.col_num())]
+    y = [P.col_vector(i)[1] for i in range(P.col_num())]
+    return [list(pair) for pair in zip(x, y)]
+
+
+# DONE 将图形按照传入的参数沿Y轴翻转
+def flip_y(points):
+    p = Metrix(points)
+    T = Metrix([
+        [-1, 0],
+        [0, 1]
+    ])
+    P = T.dot(p.T())
+    x = [P.col_vector(i)[0] for i in range(P.col_num())]
+    y = [P.col_vector(i)[1] for i in range(P.col_num())]
     return [list(pair) for pair in zip(x, y)]
 
 
@@ -67,4 +92,20 @@ if __name__ == '__main__':
     y_new = [points[1] for points in updated_points]
 
     plt.plot(x_new, y_new)
+    # plt.show()
+
+    # DONE 测试图形沿X轴进行翻转
+    flip_x_points = flip_x(rectangle_points)
+    flip_x_x = [points[0] for points in flip_x_points]
+    flip_x_y = [points[1] for points in flip_x_points]
+
+    plt.plot(flip_x_x, flip_x_y)
+    # plt.show()
+
+    # DONE 测试图形沿Y轴进行翻转
+    flip_y_points = flip_y(rectangle_points)
+    flip_y_x = [points[0] for points in flip_y_points]
+    flip_y_y = [points[1] for points in flip_y_points]
+
+    plt.plot(flip_y_x, flip_y_y)
     plt.show()
