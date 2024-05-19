@@ -6,7 +6,6 @@
 """
 import matplotlib.pyplot as plt
 from playLA.Metrix import Metrix
-from playLA.Vector import Vector
 
 
 # DONE 将图形按照传入的参数进行放大或缩小，参数小于1时缩小，参数大于1时放大
@@ -60,6 +59,8 @@ def flip_y(points):
     y = [P.col_vector(i)[1] for i in range(P.col_num())]
     return [list(pair) for pair in zip(x, y)]
 
+# TODO 将图形按照传入的参数进行旋转
+
 
 if __name__ == '__main__':
     rectangle_points = [
@@ -109,3 +110,5 @@ if __name__ == '__main__':
 
     plt.plot(flip_y_x, flip_y_y)
     plt.show()
+
+    # TODO 测试将图形按照传入参数进行旋转
