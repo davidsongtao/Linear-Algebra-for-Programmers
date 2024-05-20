@@ -14,6 +14,14 @@ class Metrix:
             [0] * c for _ in range(r)
         ])
 
+    # DONE 返回一个单位矩阵
+    @classmethod
+    def identity(cls, n):
+        m = [[0] * n for _ in range(n)]  # 创建一个n行n列的零矩阵
+        for i in range(n):
+            m[i][i] = 1  # 将第i行第i个数字赋值为1
+        return cls(m)
+
     # DONE 复写矩阵的打印方法
     def __repr__(self):
         return f"Metrix({self._values})"
