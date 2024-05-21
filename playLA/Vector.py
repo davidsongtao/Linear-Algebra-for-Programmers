@@ -4,6 +4,7 @@
 import math
 from playLA._global import EPSILON
 
+
 # 定义一个向量类,传入一个list
 class Vector:
     def __init__(self, lst):
@@ -15,7 +16,7 @@ class Vector:
 
     # DONE 返回向量的单位向量
     def normalize(self):
-        if self.norm() < EPSILON:    # 浮点数和0比较，不能直接使用==，要定义一个精度
+        if self.norm() < EPSILON:  # 浮点数和0比较，不能直接使用==，要定义一个精度
             raise ZeroDivisionError("Normalization cannot be zero")
         return Vector(self._values) / self.norm()
 
@@ -49,7 +50,7 @@ class Vector:
 
     # DONE 返回两个向量的点乘的结果，返回一个标量
     def dot(self, another):
-        assert len(self) == len(another),\
+        assert len(self) == len(another), \
             "Error in Dotting. Length must be same."
         return sum(a * b for a, b in zip(self, another))
 
@@ -87,3 +88,6 @@ class Vector:
 
     def __str__(self):
         return "({})".format(", ".join(str(e) for e in self._values))
+
+    def underlying_list(self):
+        return self._values[:]
