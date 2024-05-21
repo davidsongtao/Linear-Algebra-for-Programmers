@@ -53,6 +53,7 @@ class LinearSystem:
         self._forward()
         self._backward()
 
+    # DONE 打结果输出
     def fancy_print(self):
         for i in range(self._m):
             print("".join(str(self.Ab[i][j]) for j in range(self._n)), end=" ")
